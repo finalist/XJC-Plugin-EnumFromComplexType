@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>nl.finalist.xjc.plugin</groupId>
 	<artifactId>enumFromComplexType</artifactId>
-	<version>0.0.5</version>
+	<version>0.0.1-SNAPSHOT</version>
 	<name>Enum from complextype</name>
 	<description>A XJC plugin which generates enums from complextypes	</description>
 	<developers>
@@ -14,9 +14,9 @@
 		</developer>
 	</developers>
 	<scm>
-		<connection>scm:git://github.com/finalist/xjc-plugin.git/tree/master/enumFromComplexType</connection>
-		<developerConnection>scm:git:https://github.com/finalist/xjc-plugin.git/tree/master/enumFromComplexType</developerConnection>
-		<url>https://github.com/finalist/xjc-plugin/tree/master/enumFromComplexType</url>
+		<connection>scm:git://github.com/finalist/XJC-Plugin-EnumFromComplexType.git</connection>
+		<developerConnection>scm:git:https://github.com/finalist/XJC-Plugin-EnumFromComplexType.git</developerConnection>
+		<url>https://github.com/finalist/XJC-Plugin-EnumFromComplexType</url>
 	</scm>
 	<dependencies>
 		<dependency>
