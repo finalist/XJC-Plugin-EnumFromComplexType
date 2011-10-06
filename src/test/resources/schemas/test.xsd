@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Common Data Model for BNL (Bibliotheek.nl) based on NCIP v2.0.1-->
+<!-- Author: Ton Swieb (ton.swieb@finalist.nl)-->
+<xs:schema targetNamespace="http://www.niso.org/2008/ncip" elementFormDefault="qualified" attributeFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.niso.org/2008/ncip">
+	<xs:complexType name="ComplexTypeWithStringEnumRestrictions">
+		<xs:simpleContent>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="Value1"/>
+			</xs:restriction>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="ComplexTypeWithStringPattern">
+		<xs:simpleContent>
+			<xs:restriction base="xs:string">
+				<xs:pattern value="*"/>
+			</xs:restriction>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="ComplexTypeWithIntegerEnumRestrictions">
+		<xs:simpleContent>
+			<xs:restriction base="xs:int">
+				<xs:enumeration value="1"/>
+			</xs:restriction>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="ComplexTypeWithOutSimpleContent"/>
+	<xs:simpleType name="SimpleType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Value1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="SchemeValuePair">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="Scheme" type="xs:anyURI"/>				
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="DerivedComplexTypeWithStringEnumRestrictions">
+		<xs:simpleContent>
+			<xs:restriction base="SchemeValuePair">
+				<xs:enumeration value="Faculty"/>
+				<xs:enumeration value="Graduate"/>
+				<xs:enumeration value="Postdoctoral"/>
+				<xs:enumeration value="Staff"/>
+				<xs:enumeration value="Undergraduate"/>
+				<xs:enumeration value="Adult"/>
+				<xs:enumeration value="Child"/>
+				<xs:attribute name="Scheme" type="xs:anyURI" fixed="http://www.bibliotheek.nl/cdm/v1_0/schemes/agencyuserprivilegetype/agencyuserprivilegetype.scm"/>
+			</xs:restriction>
+		</xs:simpleContent>
+	</xs:complexType>
+</xs:schema>
