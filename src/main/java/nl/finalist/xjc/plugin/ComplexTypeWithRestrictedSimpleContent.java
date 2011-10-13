@@ -9,6 +9,7 @@ import com.sun.xml.xsom.XSContentType;
 import com.sun.xml.xsom.XSDeclaration;
 import com.sun.xml.xsom.XSFacet;
 import com.sun.xml.xsom.XSRestrictionSimpleType;
+import com.sun.xml.xsom.XSType;
 
 /**
  * Represents a XML Complextype which contains restricted simple content.
@@ -20,6 +21,7 @@ public class ComplexTypeWithRestrictedSimpleContent {
 	public static String DATATYPE_ENUMERATION = "enumeration";
 	public static String XML_SCHEMA = "http://www.w3.org/2001/XMLSchema";
 	public static String XML_STRING = "string";
+	public static String XML_ANYTYPE = "anyType";
 	
 	private final XSRestrictionSimpleType simpleType;
 		
@@ -65,8 +67,20 @@ public class ComplexTypeWithRestrictedSimpleContent {
 	 */
 	public boolean isXmlStringSimpleType() {
 		
-		return isXMLString(simpleType) || isXMLString(simpleType.getSimpleBaseType());
-	}	
+		return isXmlStringSimpleType(simpleType);
+//		return isXMLString(simpleType) || isXMLString(simpleType.getSimpleBaseType());
+	}
+	
+	private boolean isXmlStringSimpleType(XSType type) {		
+		if (isXMLString(type)) {
+			return true;
+		} else if (isXMLAnyType(type)) {
+			return false; //reached the bottom of the recursion. Nothing found.
+		} else {
+			return isXmlStringSimpleType(type.getBaseType()); //traversing down
+		}
+	}
+	
 	
 	/**
 	 * @return the enumeration which restricts the content of this complex type or an empty list in case the content is 
@@ -90,6 +104,10 @@ public class ComplexTypeWithRestrictedSimpleContent {
 		return enumerations;
 	}
 
+	private static boolean isXMLAnyType(XSDeclaration declaration) {
+		return XML_SCHEMA.equals(declaration.getTargetNamespace()) && XML_ANYTYPE.equals(declaration.getName());
+	}
+	
 	private static boolean isXMLString(XSDeclaration declaration) {
 		return XML_SCHEMA.equals(declaration.getTargetNamespace()) && XML_STRING.equals(declaration.getName());
 	}

@@ -36,6 +36,24 @@
 			</xs:extension>
 		</xs:simpleContent>
 	</xs:complexType>
+	<xs:complexType name="ProblemTypeScheme" abstract="true">
+		<xs:simpleContent>
+			<xs:restriction base="SchemeValuePair"/>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="InheritedProblemTypeScheme">
+		<xs:simpleContent>
+			<xs:restriction base="ProblemTypeScheme">
+				<xs:enumeration value="Gebruiker onbekend"/>
+				<xs:enumeration value="Gebruiker niet geautoriseerd"/>
+				<xs:enumeration value="Authenticeren gebruiker mislukt"/>
+				<xs:enumeration value="Waarde buiten veldformaat"/>
+				<xs:enumeration value="Toevoegen veld mislukt"/>
+				<xs:enumeration value="Verwijderen veld mislukt"/>
+				<xs:attribute name="Scheme" type="xs:anyURI" fixed="http://www.bibliotheek.nl/cdm/v1_0/schemes/problemtype/updateuserprocessingerror.scm"/>
+			</xs:restriction>
+		</xs:simpleContent>
+	</xs:complexType>
 	<xs:complexType name="DerivedComplexTypeWithStringEnumRestrictions">
 		<xs:simpleContent>
 			<xs:restriction base="SchemeValuePair">

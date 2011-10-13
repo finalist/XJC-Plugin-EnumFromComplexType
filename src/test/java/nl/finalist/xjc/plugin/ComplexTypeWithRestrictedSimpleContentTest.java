@@ -26,6 +26,8 @@ public class ComplexTypeWithRestrictedSimpleContentTest extends XSDBaseTest {
 		assertTrue("Expecting a XML ComplexType with restricted content",isComplexTypeWithRestrictedSimpleContent(stringPattern));		
 		assertTrue("Expecting a XML ComplexType with restricted content",isComplexTypeWithRestrictedSimpleContent(derivedStringEnum));
 		assertTrue("Expecting a XML ComplexType with restricted content",isComplexTypeWithRestrictedSimpleContent(withSimpleContentAttributExtension));
+		assertTrue("Expecting a XML ComplexType with restricted content",isComplexTypeWithRestrictedSimpleContent(abstractProblemScheme));
+		assertTrue("Expecting a XML ComplexType with restricted content",isComplexTypeWithRestrictedSimpleContent(concreteProblemScheme));
 	}
 	
 	@Test
@@ -98,5 +100,21 @@ public class ComplexTypeWithRestrictedSimpleContentTest extends XSDBaseTest {
 	@Test
 	public void testXSComponentIsNull() {
 		assertFalse("Expecting that null is handled gracefully",isComplexTypeWithRestrictedSimpleContent(null));
-	}	
+	}
+	
+	@Test
+	public void testAbstractProblemTypeSchemeHasNoElements() {
+		ComplexTypeWithRestrictedSimpleContent complextype = getNewInstance(abstractProblemScheme);
+		assertTrue("Expecting a restriction base of xs:string",complextype.isXmlStringSimpleType());
+		Collection<String> xmlStringEnmerations = complextype.getXMLStringEnmerations();
+		assertEquals("Expecting zero element in the enumeration",0, xmlStringEnmerations.size());
+	}
+	
+	@Test
+	public void testConcreteProblemTypeSchemeHasElements() {
+		ComplexTypeWithRestrictedSimpleContent complextype = getNewInstance(concreteProblemScheme);
+		assertTrue("Expecting a restriction base of xs:string",complextype.isXmlStringSimpleType());
+		Collection<String> xmlStringEnmerations = complextype.getXMLStringEnmerations();
+		assertEquals("Expecting 6 elements in the enumeration",6, xmlStringEnmerations.size());
+	}
 }

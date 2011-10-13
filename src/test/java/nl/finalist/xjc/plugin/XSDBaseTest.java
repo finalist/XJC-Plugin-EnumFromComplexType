@@ -23,6 +23,8 @@ public abstract class XSDBaseTest {
 	public static XSSimpleType simpletype;
 	public static XSComplexType withSimpleContentAttributExtension;
 	public static XSComplexType derivedStringEnum;
+	public static XSComplexType abstractProblemScheme;
+	public static XSComplexType concreteProblemScheme;
 
 	@BeforeClass
 	public static void init() throws SAXException, IOException {
@@ -34,6 +36,8 @@ public abstract class XSDBaseTest {
 		withSimpleContentAttributExtension = schemaSet.getComplexType(NAME_SPACE, "SchemeValuePair");
 		derivedStringEnum = schemaSet.getComplexType(NAME_SPACE, "DerivedComplexTypeWithStringEnumRestrictions");
 		simpletype = schemaSet.getSimpleType(NAME_SPACE, "SimpleType");
+		abstractProblemScheme = schemaSet.getComplexType(NAME_SPACE, "ProblemTypeScheme");
+		concreteProblemScheme = schemaSet.getComplexType(NAME_SPACE, "InheritedProblemTypeScheme");
 	}
 	
 	private static XSSchemaSet parseSchema(String file) throws SAXException, IOException {
